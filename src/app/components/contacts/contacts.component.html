@@ -1,0 +1,70 @@
+<!-- <p>contacts works!</p> -->
+<br/>
+<div class="wrapper">
+    <div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contact of contacts">
+            <td>{{ contact.name }}</td>
+            <td>{{ contact.email }}</td>
+            <td>{{ contact.number }}</td>
+            <td>
+              <button type="button" class="button-primary" [class.selected] = "contact === selectedContacts"
+              (click)="updateContact(contact)">Edit</button> |
+              <button type="button" class="button-danger" (click)="deleteContact(contact)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+<br/>
+<div class="wrapper">
+    <div class="container">
+    <legend>Create Contact</legend>
+    <form>
+      <div class="mb-3">
+        <label for="txtName" class="form-label">Name: </label>
+        <input type="text" name="name" [(ngModel)] = "newName" class="form-control" id="txtName" />
+      </div>
+      <div class="mb-3">
+        <label for="txtEmail" class="form-label">Email: </label>
+        <input type="text" name="email" [(ngModel)] = "newEmail" class="form-control" id="txtEmail" />
+      </div>
+      <div class="mb-3">
+        <label for="txtNumber" class="form-label">Phone Number: </label>
+        <input type="text" name="number" [(ngModel)] = "newNumber" class="form-control" id="txtNumber" />
+      </div>
+      <button type="button" (click)="addContact()" class="button-primary">Create</button>
+    </form>
+</div>
+</div>
+<br/>
+<div class="wrapper" *ngIf = "selectedContacts">
+    <div class="container">
+    <legend>Edit Contact</legend>
+    <form>
+      <div class="mb-3">
+        <label for="txtName" class="form-label">Name: </label>
+        <input type="text" name="name" [(ngModel)] = "selectedContacts.name" class="form-control" id="txtName" />
+      </div>
+      <div class="mb-3">
+        <label for="txtEmail" class="form-label">Email: </label>
+        <input type="text" name="email" [(ngModel)] = "selectedContacts.email" class="form-control" id="txtEmail" />
+      </div>
+      <div class="mb-3">
+        <label for="txtNumber" class="form-label">Phone Number: </label>
+        <input type="text" name="number" [(ngModel)] = "selectedContacts.number" class="form-control" id="txtNumber" />
+      </div>
+      <button type="button" class="button-primary">Update</button>
+    </form>
+    </div>
+</div>
